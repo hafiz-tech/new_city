@@ -16,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF2F7FB),
-
       body: Row(
         children: [
           Expanded(
@@ -25,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Obx(() =>
               Expanded(
-                  flex: 3,
+                  flex: 4,
                   child:
                   homeController.selectedIndex.value==0? const DashboardScreen():
                   homeController.selectedIndex.value==1?const PhaseListScreen():

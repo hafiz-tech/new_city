@@ -11,11 +11,12 @@ class SaleChart extends StatefulWidget {
 
 class SaleChartState extends State<SaleChart> {
   List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', 28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
+    _SalesData('Jul', 35),
+    _SalesData('Aug', 28),
+    _SalesData('Sep', 34),
+    _SalesData('Oct', 32),
+    _SalesData('Nov', 40),
+    _SalesData('Dec', 15),
   ];
 
   @override
@@ -25,7 +26,7 @@ class SaleChartState extends State<SaleChart> {
       SfCartesianChart(
           primaryXAxis: const CategoryAxis(),
           // Chart title
-          title: const ChartTitle(text: 'Half yearly sales analysis'),
+        //title: const ChartTitle(text: 'Half yearly sales analysis'),
           // Enable legend
           legend: const Legend(isVisible: true),
           // Enable tooltip
@@ -38,27 +39,10 @@ class SaleChartState extends State<SaleChart> {
                 name: 'Sales',
                 // Enable data label
                 dataLabelSettings: const DataLabelSettings(isVisible: true))
-          ]),
-      // Expanded(
-      //   child: Padding(
-      //     padding: const EdgeInsets.all(8.0),
-      //     //Initialize the spark charts widget
-      //     child: SfSparkLineChart.custom(
-      //       //Enable the trackball
-      //       trackball: const SparkChartTrackball(
-      //           activationMode: SparkChartActivationMode.tap),
-      //       //Enable marker
-      //       marker: const SparkChartMarker(
-      //           displayMode: SparkChartMarkerDisplayMode.all),
-      //       //Enable data label
-      //       labelDisplayMode: SparkChartLabelDisplayMode.all,
-      //       xValueMapper: (int index) => data[index].year,
-      //       yValueMapper: (int index) => data[index].sales,
-      //       dataCount: 5,
-      //     ),
-      //   ),
-      // )
-    ]);
+          ],
+      ),
+    ]
+    );
   }
 }
 

@@ -1,8 +1,12 @@
 import 'package:new_city/utils/app_layout.dart';
 import '../chart/chart.dart';
+import '../tabels/new_member.dart';
 import '../utils/dependencies.dart';
+import '../widgets/apply_for_ndc.dart';
 import '../widgets/card_widget.dart';
 import '../widgets/card_widget2.dart';
+import '../widgets/current_month_income.dart';
+import '../widgets/latest_daily_activities.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -26,10 +30,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           const SizedBox(width: 50),
           DropdownButton<String>(
+            value: 'Test',
             onChanged: (value) {
-              // Implement your dropdown functionality here
+              var selectedType;
+              selectedType.value = value;
             },
-            items: ['Option 1', 'Option 2', 'Option 3'].map((String value) {
+            items: ['Test', 'Setting', 'Profile'].map((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
@@ -42,7 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       backgroundColor: const Color(0xffF2F7FB),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -84,16 +90,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 20),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: size.width * 0.45,
+                    width: size.width * 0.49,
                     height: 450,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: Colors.white,
                     ),
                     child:  Padding(
-                      padding: EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -106,6 +113,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               color: Colors.black,
                             ),
                           ),
+                          const SizedBox(height: 30),
                           SaleChart(),
                         ],
                       ),
@@ -221,7 +229,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 20),
               const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CardWidget2(
                     icon: Icon(Icons.house),
@@ -308,7 +316,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                 ],
-              )
+              ),
+              const SizedBox(height: 20),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CurrentMonthIncomeCard(),
+                  ApplyForNDCWidget(),
+                  LatestDailyActivitiesWidget(),
+                ],
+              ),
+              const SizedBox(height: 20),
+              NewMemberGrid(),
             ],
           ),
         ),
