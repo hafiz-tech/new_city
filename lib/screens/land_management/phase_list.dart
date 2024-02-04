@@ -1,3 +1,4 @@
+import '../../tabels/add_new_phase_list.dart';
 import '../../utils/app_layout.dart';
 import '../../utils/dependencies.dart';
 
@@ -37,9 +38,8 @@ class PhaseListScreen extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-
-            )
+            const SizedBox(height: 30),
+            NewAddedPahseList(),
           ],
         )
       ),

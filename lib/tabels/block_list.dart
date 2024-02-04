@@ -4,14 +4,14 @@ import '../utils/app_layout.dart';
 import '../utils/dependencies.dart';
 
 
-class NewAddedPahseList extends StatefulWidget {
-  NewAddedPahseList({Key? key}) : super(key: key);
+class BlockList extends StatefulWidget {
+  BlockList({Key? key}) : super(key: key);
 
   @override
-  _NewAddedPahseListState createState() => _NewAddedPahseListState();
+  _BlockListState createState() => _BlockListState();
 }
 
-class _NewAddedPahseListState extends State<NewAddedPahseList> {
+class _BlockListState extends State<BlockList> {
   List<NewPhases> newPhases = <NewPhases>[];
   late PhasesDataSource phasesDataSource;
   var homeController = Get.put(HomeController());
@@ -39,14 +39,14 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
           children: [
             InkWell(
               onTap: () {
-                homeController.changeIndex(2);
+                homeController.changeIndex(4);
               },
               child: Container(
                 width: 100,
                 height: 45,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.blue
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.blue
                 ),
                 child: const Center(
                   child: Text(
@@ -62,8 +62,8 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
               ),
             ),
             const SizedBox(height: 30),
-             Row(
-               mainAxisAlignment: MainAxisAlignment.end,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
                   width: 300,
@@ -122,12 +122,12 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
                   ),
                 ),
                 GridColumn(
-                    columnName: 't_area',
+                    columnName: 'b_name',
                     label: Container(
                         padding: const EdgeInsets.all(16.0),
                         alignment: Alignment.centerLeft,
                         child: const Text(
-                          'Total Area in Acers',style:
+                          'Block Name',style:
                         TextStyle(
                           fontFamily: 'Quicksand-SemiBold',
                           fontSize: 18,
@@ -150,20 +150,6 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
                         ),
                           //overflow: TextOverflow.ellipsis,
                         ))),
-                GridColumn(
-                  columnName: 'price',
-                  label: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    alignment: Alignment.centerLeft,
-                    child: const Text('Per Marla Price' , style:
-                    TextStyle(
-                      fontFamily: 'Quicksand-SemiBold',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black,
-                    ),),
-                  ),
-                ),
               ],
             ),
             SfDataPager(pageCount: 5, delegate: DataPagerDelegate()),
@@ -175,9 +161,9 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
 
   List<NewPhases> getEmployeeData() {
     return [
-      NewPhases(1, 'New City Phase 1', 500, 50, 25000),
-      NewPhases(2, 'New City Phase 1', 400, 40, 35000),
-      NewPhases(3, 'New City Phase 1', 300, 30, 45000),
+      NewPhases(1, 'New City Phase 1', 'Block A', 50),
+      NewPhases(2, 'New City Phase 1', 'Block B', 40),
+      NewPhases(3, 'New City Phase 1', 'Block C', 30),
       /*NewPhases('Michael', '5 Marla', 'Gold', 15000, 'Dec 29, 2023'),
       NewPhases('Martin', '5 Marla', 'Gold', 15000, 'Dec 29, 2023'),
       NewPhases('Newberry', '5 Marla', 'Gold', 15000, 'Dec 29, 2023'),
@@ -192,12 +178,11 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
 /// Custom business object class which contains properties to hold the detailed
 /// information about the employee which will be rendered in datagrid.
 class NewPhases {
-  NewPhases(this.serNo, this.name, this.t_area,  this.t_plot,  this.price);
+  NewPhases(this.serNo, this.name, this.b_name,  this.t_plot);
   final int serNo;
   final String name;
-  final int t_area;
+  final String b_name;
   final int t_plot;
-  final int price;
 }
 
 /// An object to set the employee collection data source to the datagrid. This
@@ -209,9 +194,8 @@ class PhasesDataSource extends DataGridSource {
         .map<DataGridRow>((e) => DataGridRow(cells: [
       DataGridCell<int>(columnName: 'serNo', value: e.serNo),
       DataGridCell<String>(columnName: 'name', value: e.name),
-      DataGridCell<int>(columnName: 't_area', value: e.t_area),
+      DataGridCell<String>(columnName: 'b_name', value: e.b_name),
       DataGridCell<int>(columnName: 't_plot', value: e.t_plot),
-      DataGridCell<int>(columnName: 'price', value: e.price),
     ]))
         .toList();
   }

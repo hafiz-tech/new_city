@@ -4,14 +4,14 @@ import '../utils/app_layout.dart';
 import '../utils/dependencies.dart';
 
 
-class NewAddedPahseList extends StatefulWidget {
-  NewAddedPahseList({Key? key}) : super(key: key);
+class NewAddedPlotList extends StatefulWidget {
+  NewAddedPlotList({Key? key}) : super(key: key);
 
   @override
-  _NewAddedPahseListState createState() => _NewAddedPahseListState();
+  _NewAddedPlotListState createState() => _NewAddedPlotListState();
 }
 
-class _NewAddedPahseListState extends State<NewAddedPahseList> {
+class _NewAddedPlotListState extends State<NewAddedPlotList> {
   List<NewPhases> newPhases = <NewPhases>[];
   late PhasesDataSource phasesDataSource;
   var homeController = Get.put(HomeController());
@@ -39,14 +39,14 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
           children: [
             InkWell(
               onTap: () {
-                homeController.changeIndex(2);
+                homeController.changeIndex(6);
               },
               child: Container(
                 width: 100,
                 height: 45,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.blue
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.blue
                 ),
                 child: const Center(
                   child: Text(
@@ -62,8 +62,8 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
               ),
             ),
             const SizedBox(height: 30),
-             Row(
-               mainAxisAlignment: MainAxisAlignment.end,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
                   width: 300,
@@ -122,12 +122,12 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
                   ),
                 ),
                 GridColumn(
-                    columnName: 't_area',
+                    columnName: 'b_name',
                     label: Container(
                         padding: const EdgeInsets.all(16.0),
                         alignment: Alignment.centerLeft,
                         child: const Text(
-                          'Total Area in Acers',style:
+                          'Block Name',style:
                         TextStyle(
                           fontFamily: 'Quicksand-SemiBold',
                           fontSize: 18,
@@ -136,12 +136,12 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
                         ),
                         ))),
                 GridColumn(
-                    columnName: 't_plot',
+                    columnName: 'plot_no',
                     label: Container(
                         padding: const EdgeInsets.all(8.0),
                         alignment: Alignment.centerLeft,
                         child: const Text(
-                          'Total Plot', style:
+                          'Plot No.', style:
                         TextStyle(
                           fontFamily: 'Quicksand-SemiBold',
                           fontSize: 18,
@@ -151,11 +151,11 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
                           //overflow: TextOverflow.ellipsis,
                         ))),
                 GridColumn(
-                  columnName: 'price',
+                  columnName: 'p_size',
                   label: Container(
                     padding: const EdgeInsets.all(8.0),
                     alignment: Alignment.centerLeft,
-                    child: const Text('Per Marla Price' , style:
+                    child: const Text('Plot Size' , style:
                     TextStyle(
                       fontFamily: 'Quicksand-SemiBold',
                       fontSize: 18,
@@ -175,9 +175,9 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
 
   List<NewPhases> getEmployeeData() {
     return [
-      NewPhases(1, 'New City Phase 1', 500, 50, 25000),
-      NewPhases(2, 'New City Phase 1', 400, 40, 35000),
-      NewPhases(3, 'New City Phase 1', 300, 30, 45000),
+      NewPhases(1, 'New City Phase 1', 'A Block', 'AA 1', '5 Marla'),
+      NewPhases(2, 'New City Phase 1', 'A Block', 'AA 1', '5 Marla'),
+      NewPhases(3, 'New City Phase 1', 'A Block', 'AA 1', '5 Marla'),
       /*NewPhases('Michael', '5 Marla', 'Gold', 15000, 'Dec 29, 2023'),
       NewPhases('Martin', '5 Marla', 'Gold', 15000, 'Dec 29, 2023'),
       NewPhases('Newberry', '5 Marla', 'Gold', 15000, 'Dec 29, 2023'),
@@ -192,12 +192,12 @@ class _NewAddedPahseListState extends State<NewAddedPahseList> {
 /// Custom business object class which contains properties to hold the detailed
 /// information about the employee which will be rendered in datagrid.
 class NewPhases {
-  NewPhases(this.serNo, this.name, this.t_area,  this.t_plot,  this.price);
+  NewPhases(this.serNo, this.name, this.b_name,  this.plot_no,  this.p_size);
   final int serNo;
   final String name;
-  final int t_area;
-  final int t_plot;
-  final int price;
+  final String b_name;
+  final String plot_no;
+  final String p_size;
 }
 
 /// An object to set the employee collection data source to the datagrid. This
@@ -209,9 +209,9 @@ class PhasesDataSource extends DataGridSource {
         .map<DataGridRow>((e) => DataGridRow(cells: [
       DataGridCell<int>(columnName: 'serNo', value: e.serNo),
       DataGridCell<String>(columnName: 'name', value: e.name),
-      DataGridCell<int>(columnName: 't_area', value: e.t_area),
-      DataGridCell<int>(columnName: 't_plot', value: e.t_plot),
-      DataGridCell<int>(columnName: 'price', value: e.price),
+      DataGridCell<String>(columnName: 'b_name', value: e.b_name),
+      DataGridCell<String>(columnName: 'plot_no', value: e.plot_no),
+      DataGridCell<String>(columnName: 'p_size', value: e.p_size),
     ]))
         .toList();
   }
