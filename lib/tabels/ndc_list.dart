@@ -87,9 +87,13 @@ class _NDCListState extends State<NDCList> {
             const SizedBox(height: 30),
             SfDataGrid(
               source: phasesDataSource,
-              columnWidthMode: ColumnWidthMode.fill,
+              columnWidthMode: ColumnWidthMode.auto,
               allowSorting: true,
-              allowMultiColumnSorting: true,
+              allowFiltering: true,
+              selectionMode: SelectionMode.multiple,
+              navigationMode: GridNavigationMode.cell,
+              headerGridLinesVisibility:GridLinesVisibility.none,
+              showColumnHeaderIconOnHover: true,
               sortingGestureType: SortingGestureType.tap,
               rowsPerPage: 0,
               columns: <GridColumn>[
